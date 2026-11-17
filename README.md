@@ -12,13 +12,47 @@ The previews are renders of a stand-in page that uses the app's stylesheet, not 
 
 ## Install
 
-1. Copy both files from `theme/` into T3 Code's themes folder:
-   - Windows: `%USERPROFILE%\.t3\userdata\themes`
-   - macOS / Linux: `~/.t3/userdata/themes`
-2. Pick **Faceplate** in the app's theme settings, or ask an agent in T3 Code to "switch to the Faceplate theme".
-3. If the bezel shows as flat colour with no grain, reload the window so the image loads.
+Paste this into a T3 Code thread:
 
-`faceplate.png` is the bezel. It must sit next to `faceplate.json` and keep the same base name.
+> Install the Faceplate theme from https://github.com/ericzwu/faceplate-t3-theme. Follow the "Instructions for agents" section of its README.
+
+### Instructions for agents
+
+The theme is two files that must be installed together. Do not pass the theme JSON through `t3_theme_set`; copy the
+files instead, so the bezel image comes with it.
+
+1. Call `t3_theme_read` and take `themesDir` from the result. If the tool is unavailable, use
+   `~/.t3/userdata/themes` (Windows: `%USERPROFILE%\.t3\userdata\themes`) and create it if it is missing.
+2. Download both files into that folder, keeping these exact names:
+   - `https://raw.githubusercontent.com/ericzwu/faceplate-t3-theme/main/theme/faceplate.json`
+   - `https://raw.githubusercontent.com/ericzwu/faceplate-t3-theme/main/theme/faceplate.png`
+3. Call `t3_theme_set` with `themeId: "faceplate"` and no `theme`. If the tool is unavailable, tell the user to pick
+   **Faceplate** in Settings → Appearance.
+4. Tell the user it is installed, that it follows the app's light/dark setting, and that `t3-chat` restores the
+   default theme. Do not change their light/dark setting.
+
+Step 2 as one command:
+
+```sh
+# macOS / Linux / Git Bash
+d="$HOME/.t3/userdata/themes"; mkdir -p "$d"; for f in faceplate.json faceplate.png; do curl -fsSL "https://raw.githubusercontent.com/ericzwu/faceplate-t3-theme/main/theme/$f" -o "$d/$f"; done
+```
+
+```powershell
+# Windows PowerShell
+$d="$env:USERPROFILE\.t3\userdata\themes"; New-Item -ItemType Directory -Force $d | Out-Null; foreach ($f in 'faceplate.json','faceplate.png') { Invoke-WebRequest "https://raw.githubusercontent.com/ericzwu/faceplate-t3-theme/main/theme/$f" -OutFile "$d\$f" }
+```
+
+### By hand
+
+Run the command above for your system, or copy both files from `theme/` into the themes folder yourself. Then pick
+**Faceplate** in Settings → Appearance. If the bezel shows as flat colour with no grain, reload the window so the
+image loads.
+
+`faceplate.png` is the bezel. It must sit next to `faceplate.json` and keep the same base name. Adding only the JSON
+through Settings → Appearance → Add a theme leaves the bezel without its image.
+
+Requires a T3 Code build that accepts 50,000 characters of theme CSS (0.1.10 does).
 
 ## What it changes
 
