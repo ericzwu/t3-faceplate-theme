@@ -39,16 +39,13 @@ Tested on T3 Code 0.1.10.
 
 ## Building
 
-`node src/build.js` merges `src/dark.css` and `src/light.css`, embeds the fonts from `src/fonts/` and writes
-`theme/faceplate.json`. Colour roles are in `src/roles.json`.
+`node src/build.js` merges `src/dark.css` and `src/light.css` into `theme/faceplate.json`. Colour roles are in `src/roles.json`.
 
 `python src/make-bezel.py theme/faceplate.png` re-renders the bezel. It needs Pillow.
 
-Theme CSS is capped at 50,000 characters, fonts included, and the build fails above that. Light mode reuses the dark
+Theme CSS is capped at 50,000 characters, and the build fails above that. Light mode reuses the dark
 bezel image, flipped and tone-mapped in CSS, because a theme gets only one image.
 
 ## Licence
 
-The theme is [MIT](LICENSE). The code font is a Latin subset of IBM Plex Mono, under the SIL Open Font License 1.1
-([`src/fonts/OFL.txt`](src/fonts/OFL.txt)). It's named "IX Mono" in the theme because the licence reserves "Plex" for
-unmodified copies.
+[MIT](LICENSE)

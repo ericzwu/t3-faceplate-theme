@@ -5,7 +5,6 @@
 // dark.css and light.css are complete stylesheets for each mode. Rules that are identical in both are written once;
 // rules that differ are written twice, scoped to the app's mode with :where(html.dark) / :where(html:not(.dark)).
 // :where() adds no specificity, so the cascade inside each mode is exactly what the per-mode file says.
-// The two IBM Plex Mono subsets are embedded as data: URIs, because a theme cannot load files.
 const fs = require("fs");
 const path = require("path");
 const here = (f) => path.join(__dirname, f);
@@ -59,13 +58,7 @@ function merge(darkCss, lightCss) {
   return out.join("");
 }
 
-const font = (file, weight) =>
-  `@font-face{font-family:"IX Mono";font-style:normal;font-weight:${weight};src:url(data:font/woff2;base64,${fs.readFileSync(here("fonts/" + file)).toString("base64")}) format("woff2")}`;
-
-const css =
-  font("plex400-sub.woff2", "400") +
-  font("plex600-sub.woff2", "600 700") +
-  merge(fs.readFileSync(here("dark.css"), "utf8"), fs.readFileSync(here("light.css"), "utf8"));
+const css = merge(fs.readFileSync(here("dark.css"), "utf8"), fs.readFileSync(here("light.css"), "utf8"));
 
 if (css.length > LIMIT) throw new Error(`css is ${css.length} characters; the limit is ${LIMIT}`);
 

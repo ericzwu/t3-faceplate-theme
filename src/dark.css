@@ -1,5 +1,5 @@
 /* Faceplate, dark mode: a moulded shell with a recessed dark screen; everything on the screen speaks one language */
-:root{--k-f:"IX Mono","IBM Plex Mono","Cascadia Mono",Consolas,ui-monospace,monospace;--k-h:#232321;--k-g:#090d0c;--k-t:#6fcdbb;--k-a:#dcb26a;--k-ln:#cfe3dc26;--radius:.3125rem!important;
+:root{--k-f:var(--font-mono);--k-h:#232321;--k-g:#090d0c;--k-t:#6fcdbb;--k-a:#dcb26a;--k-ln:#cfe3dc26;--radius:.3125rem!important;
 /* radius scale steps down 8px per nesting level: tube 26 > panel docked in a tube corner 18 (8px gap) > boxes in the text 10 > controls 5 > small parts 3 */
 --k-r:10px;--k-c:5px;
 /* the two physical states every control uses: raised (lit top edge, dark crease, drop) and sunk (same recess as the tube) */
