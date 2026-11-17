@@ -1,0 +1,173 @@
+/* Faceplate, dark mode: a moulded shell with a recessed dark screen; everything on the screen speaks one language */
+:root{--k-f:"IX Mono","IBM Plex Mono","Cascadia Mono",Consolas,ui-monospace,monospace;--k-h:#232321;--k-g:#ecece8;--k-t:#a33608;--k-a:#1c1c1a;--k-ln:#1c1c1a26;--radius:.3125rem!important;
+/* radius scale steps down 8px per nesting level: tube 26 > panel docked in a tube corner 18 (8px gap) > boxes in the text 10 > controls 5 > small parts 3 */
+--k-r:10px;--k-c:5px;
+/* the two physical states every control uses: raised (lit top edge, dark crease, drop) and sunk (same recess as the tube) */
+--k-up:inset 0 1px 0 #ffffff1f,inset 0 -1px 0 #00000040,0 1px 2px #000000b3;
+--k-dn:inset 0 2px 4px #000c,0 1px 0 #ffffff14}
+
+/* --k-px is one physical pixel at the current display scale (Windows scaling or app zoom) */
+:root{--k-px:1px;--k-img:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48ZmlsdGVyIGlkPSJ3IiB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMS4zIiBudW1PY3RhdmVzPSIyIiBzZWVkPSI0IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPSIwIDAgMCAwIDEgMCAwIDAgMCAxIDAgMCAwIDAgMSAuNSAwIDAgMCAtMC4yNSIvPjwvZmlsdGVyPjxmaWx0ZXIgaWQ9ImIiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIxLjMiIG51bU9jdGF2ZXM9IjIiIHNlZWQ9IjkiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIC41IDAgMCAwIC0wLjI1Ii8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIGZpbHRlcj0idXJsKCN3KSIvPjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWx0ZXI9InVybCgjYikiLz48L3N2Zz4=)}
+@media (min-resolution:1.2dppx){:root{--k-px:.8px}}
+@media (min-resolution:1.4dppx){:root{--k-px:.66667px}}
+@media (min-resolution:1.7dppx){:root{--k-px:.57143px}}
+@media (min-resolution:1.9dppx){:root{--k-px:.5px}}
+@media (min-resolution:2.4dppx){:root{--k-px:.4px}}
+@media (min-resolution:2.9dppx){:root{--k-px:.33334px}}
+:is(code,pre,kbd,samp,[data-slot=kbd],.chat-markdown-codeblock,.chat-markdown table):not(.katex *,.xterm *),:is(pre,.chat-markdown-codeblock,.chat-markdown table) :not(.katex,.katex *){font-family:var(--k-f)!important}
+::selection{background:var(--k-t);color:var(--k-g);text-shadow:none}
+@keyframes k-blink{50%{opacity:0}}
+
+/* Faceplate: sidebar and header are one piece of housing, split by a single groove */
+[data-slot=sidebar-inner]{box-shadow:inset -1px 0 0 #0d0d0c,inset -2px 0 0 #ffffff0b!important}
+/* shell: satin micro-grain, plus the light. A soft sheen from the top-left and a slow falloff downward, so the
+   surface is not uniform; keys, wells and plates stay smooth */
+[data-slot=sidebar-inner]{background-image:radial-gradient(140% 70% at 0 0,#ffffff0f,#0000 62%),linear-gradient(#0000 50%,#00000029),var(--k-img)!important;background-size:auto,auto,256px 256px!important}
+[data-chat-header]{background-image:linear-gradient(#ffffff00,#ffffff14),linear-gradient(#ffffff0a,#0000 75%),var(--k-img)!important;background-size:100% 2px,auto,256px 256px!important;background-position:0 100%,0 0,0 0!important;background-repeat:no-repeat,no-repeat,repeat!important}
+[data-sidebar-row]{border-radius:var(--k-c)!important}
+[data-sidebar-row]:hover{box-shadow:inset 0 1px 0 #ffffff14,0 1px 2px #0009}
+[data-sidebar-row][aria-current]:not([aria-current=false]){background:#151514!important;box-shadow:var(--k-dn)!important}
+
+/* Keys: flush with the faceplate until touched, raised on hover, sunk while pressed or switched on */
+[data-slot=button],[data-slot=toggle],[data-slot=select-trigger],[data-slot=sidebar-menu-button]{border-radius:var(--k-c)!important}
+:is([data-slot=button],[data-slot=toggle]):not(.underline-offset-4):hover,[data-slot=button]:not(.border-transparent),[data-slot=select-trigger]{box-shadow:var(--k-up)!important}
+:is([data-slot=combobox-trigger],[data-slot=menu-trigger],[data-slot=popover-trigger]).border:not(.border-transparent){border-radius:var(--k-c)!important;border-color:#0000!important;box-shadow:var(--k-up)!important;background-image:linear-gradient(#ffffff14,#ffffff05)!important}
+[data-slot=button]:not(.border-transparent),[data-slot=select-trigger]{border-color:#0000!important;background-image:linear-gradient(#ffffff14,#ffffff05)!important}
+:is([data-slot=button],[data-slot=toggle],[data-slot=select-trigger]):is(:active,[data-pressed],[aria-pressed=true]){box-shadow:var(--k-dn)!important}
+:is([data-slot=button],[data-slot=toggle],[data-slot=select-trigger]):focus-visible{outline:2px solid var(--k-t)!important;outline-offset:2px}
+[data-slot=kbd]{background:linear-gradient(#3a3a36,#2c2c29)!important;border:0!important;border-radius:3px!important;box-shadow:inset 0 1px 0 #ffffff24,0 1px 0 #000!important}
+[data-slot=badge]{border-radius:3px!important}
+
+/* Wells: anything you type into or switch is sunk into the faceplate; switched on, it lights amber */
+:is([data-settings-page-scroll],[data-slot=dialog-popup],[data-slot=sheet-popup]) :is([data-slot=input-group],[data-slot=input-control]:not([data-slot=input-group] *),[data-slot=textarea-control],[data-slot=number-field-group]):not([data-slot=sidebar] *,:has([aria-label="Search settings" i],[aria-label="Search threads" i])),[data-slot=switch],[data-slot=checkbox],[data-slot=radio]{background:#131312!important;box-shadow:var(--k-dn)!important}
+:is([data-slot=input-group],[data-slot=input-control],[data-slot=textarea-control],[data-slot=number-field-group]):not(:focus-within),[data-slot=switch],[data-slot=checkbox],[data-slot=radio]{border-color:#0000!important}
+[data-slot=input-group],[data-slot=input-control],[data-slot=textarea-control],[data-slot=number-field-group],[data-slot=input]{border-radius:var(--k-c)!important}
+[data-slot=input-group] [data-slot=input-control]{background:0 0!important;box-shadow:none!important}
+[data-slot=checkbox]{border-radius:3px!important}
+[data-slot=switch]{border-radius:3px!important}
+[data-slot=switch-thumb]{border-radius:2px!important;background:repeating-linear-gradient(90deg,#0000 0 2px,#00000040 2px 3px) 50% 50%/9px 60% no-repeat,linear-gradient(#dcd8cd,#b4b0a5)!important;box-shadow:inset 0 1px 0 #ffffff80,0 1px 2px #000c!important}
+:is([data-slot=checkbox],[data-slot=radio])[data-checked]{background:#a67f36!important;box-shadow:inset 0 2px 4px #0009!important}
+[data-slot=switch][data-checked]{background:#9a7026!important;box-shadow:inset 0 2px 4px #0009,0 1px 0 #ffffff14!important}
+
+/* Faders */
+.settings-slider{--settings-slider-fill-offset:6px}
+.settings-slider::-webkit-slider-runnable-track{height:6px!important;border-radius:3px!important;background:linear-gradient(to right,#9a7026 0 var(--settings-slider-fill-position),#131312 var(--settings-slider-fill-position) 100%)!important;box-shadow:var(--k-dn)!important}
+.settings-slider::-webkit-slider-thumb{width:12px!important;height:22px!important;margin-top:-8px!important;border:0!important;border-radius:2px!important;background:linear-gradient(#0000 0 10px,#0000004d 10px 12px,#0000 12px),linear-gradient(#dcd8cd,#b4b0a5)!important;box-shadow:inset 0 1px 0 #ffffff80,0 1px 3px #000c!important;transform:none!important}
+.settings-slider:focus-visible::-webkit-slider-thumb{outline:2px solid var(--k-t);outline-offset:2px}
+
+/* Plates: menus, popovers, dialogs and toasts are raised panels; the highlighted row is a sunk slot */
+[data-slot$="-popup"]{background:linear-gradient(#2f2f2c,#272725)!important;border:0!important;border-radius:9px!important;box-shadow:inset 0 1px 0 #ffffff1a,0 1px 0 #000,0 16px 36px #000c!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+[data-slot=tooltip-popup]{border-radius:4px!important}
+:is([data-slot=menu-item],[data-slot=menu-checkbox-item],[data-slot=menu-radio-item],[data-slot=menu-sub-trigger],[data-slot=select-item],[data-slot=command-item],[data-slot=combobox-item],[data-slot=autocomplete-item]){border-radius:var(--k-c)!important}
+:is([data-slot=menu-item],[data-slot=menu-checkbox-item],[data-slot=menu-radio-item],[data-slot=menu-sub-trigger],[data-slot=select-item],[data-slot=command-item],[data-slot=combobox-item],[data-slot=autocomplete-item])[data-highlighted]{background:#171716!important;box-shadow:var(--k-dn)!important}
+
+/* Scrollbars: a sunk track with a raised slider */
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:#171716;box-shadow:inset 0 0 3px #000}
+::-webkit-scrollbar-thumb{background:#47473f;border-radius:4px;box-shadow:inset 0 1px 0 #ffffff26}
+[data-slot=scroll-area-thumb]{background:#47473f!important;border-radius:4px!important}
+
+/* The tube: glass recessed behind a moulded bezel */
+[data-workspace-area=conversation]{background:radial-gradient(ellipse at 50% 40%,#f1f1ed,#e5e5e1 95%)!important;padding:24px!important;text-shadow:.5px 1px 0 #1c1c1a24}
+/* glass: rounded tube face with faint scanlines, vignette and glare, set in a flat inner mask */
+[data-workspace-area=conversation]::after{content:"";position:absolute;inset:24px;z-index:40;pointer-events:none;border-radius:26px;clip-path:inset(-6px);
+background:repeating-linear-gradient(#0000 0 calc(2*var(--k-px)),#0000 calc(2*var(--k-px)) calc(3*var(--k-px))),radial-gradient(ellipse 120% 60% at 28% -12%,#ffffff47,#0000 55%);
+box-shadow:inset 0 0 0 1px #0000002e,inset 0 0 30px #00000014,inset 0 5px 9px -5px #00000052,0 0 0 1px #00000042,0 0 0 100px #c2c2be}
+/* frame: four flat faces sloping from the housing down to the tube, drawn from one pre-rendered 9-slice image
+   (the theme's background image). At each corner two faces just meet on the diagonal; there are no extra faces.
+   The border colours are only a fallback for when the image has not loaded */
+[data-workspace-area=conversation]::before{content:"";position:absolute;inset:0;z-index:41;pointer-events:none;border:18px solid;border-color:#131312 #2a2a28 #3a3a37 #1c1c1b;border-image:var(--theme-background-image,none) 36 repeat;background:#272725 border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) padding-box exclude,linear-gradient(#000 0 0)}
+
+/* Input: docked to the bottom of the glass as a prompt strip, aligned with the text column */
+[data-chat-composer-overlay]{left:24px!important;right:24px!important;bottom:24px!important;--chat-composer-glass-surface:var(--k-g);--chat-composer-drawer-inset:0rem!important}
+[data-chat-composer-overlay] [class*=chat-composer-drawer-inset]{width:100%!important;margin-inline:0!important}
+[data-chat-composer-overlay].items-center{top:24px!important}
+[data-chat-composer-overlay]:not(.items-center){padding-top:0!important}
+[data-chat-composer-overlay]:not(.items-center) [data-chat-composer-stack]{background:linear-gradient(#e8e8e400,#e8e8e4 26px)!important;padding-top:26px!important}
+/* strip every layer of the app's composer card (shell, host, inner surface) so only the strip remains */
+[data-chat-composer-overlay] :is([data-slot=composer-shell],[data-slot=composer-host],[data-chat-composer-main-surface]){background:0 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* the grey card itself is painted by the shell's ::before, the outline by ::after on host and surface */
+[data-chat-composer-overlay] :is([data-slot=composer-shell],[data-slot=composer-host],[data-chat-composer-main-surface])::before,[data-chat-composer-overlay] :is([data-slot=composer-shell],[data-slot=composer-host],[data-chat-composer-main-surface])::after{display:none!important}
+/* empty thread: the input is centred, so it gets the shared box style instead of the strip */
+[data-chat-composer-overlay] [data-slot=composer-host]{background:#dededa!important;border-radius:var(--k-r)!important}
+[data-chat-composer-overlay] [data-slot=composer-host]:focus-within{background:#d4d4d0!important}
+
+/* Home: less, but better. No ornament on the glass. One left axis shared by the question, the project line
+   and the input text. The project picker is the only control up there, so it is drawn as one: label, field, chevron */
+/* whatever app layer paints the housing grey over an empty thread: clear every background in the home area except the input and the readout */
+:has(>[data-chat-composer-overlay].items-center) :not([data-workspace-area=conversation],[data-slot=composer-host],[data-slot=composer-host] *,[data-thread-details-card],[data-thread-details-card] *,[data-draft-project-trigger]){background-color:#0000!important}
+[data-chat-composer-overlay] h1{text-align:left!important;padding-left:21px;font-size:26px!important;line-height:1.3!important;font-weight:400!important;letter-spacing:-.01em!important;color:#141413!important}
+[data-chat-composer-overlay] h1+p{justify-content:flex-start!important;padding-left:21px;margin-top:12px!important;height:auto!important}
+[data-chat-composer-overlay] p:has([data-draft-project-trigger])::before{content:"Project";margin-right:10px;color:#5e5e59}
+[data-chat-composer-overlay] [data-draft-project-trigger]{display:inline-flex!important;align-items:center;background:#1c1c1a17!important;border-radius:var(--k-c)!important;padding:4px 10px!important;color:var(--k-tx)!important;text-decoration:none!important;cursor:pointer}
+[data-chat-composer-overlay] [data-draft-project-trigger]:hover{background:#1c1c1a2b!important}
+[data-chat-composer-overlay] [data-draft-project-trigger]::after{content:"";flex:none;width:6px;height:6px;margin-left:10px;border-right:1.5px solid;border-bottom:1.5px solid;transform:translateY(-2px) rotate(45deg);opacity:.75}
+.composer-tiptap{caret-color:var(--k-t)}
+
+/* Thread details: an on-screen readout box, inset from the tube corner */
+[data-chat-column] [data-thread-details-card]{background:#dededa!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:0!important;border-radius:18px!important;box-shadow:none!important;translate:-19px 19px}
+
+/* On-screen text */
+.chat-markdown{line-height:1.65!important}
+.chat-markdown strong{font-weight:600!important;color:#0e0e0d}
+.chat-markdown :is(h1,h2,h3,h4){font-weight:600!important;text-transform:uppercase;letter-spacing:.07em!important;line-height:1.4!important;color:var(--k-a)!important}
+.chat-markdown h1{font-size:15px!important}
+.chat-markdown h2{font-size:13px!important}
+.chat-markdown h2::before{content:"// ";color:var(--k-t)}
+.chat-markdown :is(h3,h4){font-size:12px!important}
+.chat-markdown a:not(.chat-markdown-file-link){color:var(--k-t)!important;text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:3px;background-image:none!important}
+.chat-markdown :not(pre)>code{background:#1c1c1a1c!important;color:#1c1c1a!important;border:0!important;font-size:.9em!important;border-radius:3px!important}
+.chat-markdown ul{list-style-type:"\2013  "!important}
+.chat-markdown li::marker{color:var(--k-t)}
+.chat-markdown hr{border:0!important;border-top:1px solid var(--k-ln)!important}
+.chat-markdown[data-streaming]>:is(p,ul,ol,h1,h2,h3):last-child::after{content:"\2588";color:var(--k-t);margin-left:.2em;animation:k-blink 1s steps(1) infinite}
+
+/* One box style on the glass: same line, same radius */
+.chat-markdown-codeblock,.chat-markdown pre,.chat-markdown-table-container{border:0!important;border-radius:var(--k-r)!important;background:#1c1c1a0b!important;box-shadow:none!important}
+.chat-markdown-codeblock pre{border:0!important;background:0 0!important;filter:saturate(.7)}
+.chat-markdown-codeblock-header{text-transform:uppercase;font-size:10px!important;letter-spacing:.12em;border-bottom:1px solid var(--k-ln)}
+.chat-markdown-table-container{overflow:hidden;margin:1.2em 0!important}
+.chat-markdown table{border-collapse:collapse!important;border:0!important;font-size:12.5px!important;line-height:1.5!important;font-variant-numeric:tabular-nums}
+.chat-markdown tr{background:0 0!important}
+.chat-markdown :is(th,td){border:0!important;border-bottom:1px solid #1c1c1a14!important;padding:.55em .9em!important;background:0 0!important}
+.chat-markdown thead th{font-size:10.5px!important;font-weight:600!important;text-transform:uppercase;letter-spacing:.1em!important;color:var(--k-t)!important;background:#1c1c1a0a!important;border-bottom:1px solid var(--k-ln)!important;white-space:nowrap}
+.chat-markdown tbody tr:last-child>td{border-bottom:0!important}
+.chat-markdown table code{background:0 0!important;padding:0!important}
+[data-user-message-bubble]{background:#1c1c1a1f!important;color:#141413!important;border:0!important;border-radius:var(--k-r)!important;box-shadow:none!important}
+[data-timeline-row-kind^=work],[data-timeline-row-kind=thinking],[data-timeline-row-kind=event]{font-size:12.5px}
+
+
+/* ===== Light shell. The tube and everything on it stay dark; only the housing changes: pale grey moulded body,
+   white keys, darker recesses, one orange accent ===== */
+:root{--k-h:#d8d8d4;--k-o:#c9420f;
+--k-up:inset 0 1px 0 #ffffffd9,inset 0 -1px 0 #0000001f,0 1px 2px #00000052;
+--k-dn:inset 0 1px 3px #0000005c,0 1px 0 #ffffffb3}
+/* the screen is a light LCD: its own paper tone and ink, slightly different from the shell around it */
+[data-workspace-area=conversation],[data-chat-composer-overlay],[data-chat-column] [data-thread-details-card]{color:#1c1c1a;--foreground:#1c1c1a;--muted-foreground:#5e5e59;--contrast-foreground:#1c1c1a;--contrast-muted-foreground:#5e5e59;--contrast-message-foreground:#141413;--border:#1c1c1a2e;--contrast-border:#1c1c1a2e;--input:#1c1c1a2e;--background:#ecece8;--card:#e2e2de;--card-foreground:#1c1c1a;--popover:#dededa;--popover-foreground:#1c1c1a;--muted:#dededa;--accent:#1c1c1a17;--accent-foreground:#1c1c1a;--secondary:#dededa;--secondary-foreground:#1c1c1a;--placeholder:#5e5e59;--secondary-label:#5e5e59;--icon-muted:#5e5e59;--message-surface:#d9d9d5;--message-foreground:#141413;--code-background:#dededa;--code-foreground:#1c1c1a;--surface-raised:#dededa}
+[data-slot=sidebar-inner]{box-shadow:inset -1px 0 0 #00000033,inset -2px 0 0 #ffffffa6!important;background-image:radial-gradient(140% 70% at 0 0,#ffffff73,#0000 62%),linear-gradient(#0000 50%,#00000012),var(--k-img)!important}
+[data-chat-header]{background-image:linear-gradient(#ffffff00,#ffffffb3),linear-gradient(#ffffff59,#0000 75%),var(--k-img)!important}
+[data-sidebar-row]:hover{box-shadow:inset 0 1px 0 #ffffffb3,0 1px 2px #00000040}
+[data-sidebar-row][aria-current]:not([aria-current=false]){background:#bfbfbb!important}
+[data-slot=button]:not(.border-transparent),[data-slot=select-trigger]{background-image:linear-gradient(#ffffff40,#ffffff00)!important}
+[data-slot=kbd]{background:linear-gradient(#f6f6f3,#dfdfdb)!important;box-shadow:inset 0 1px 0 #fff,0 1px 0 #00000059!important}
+:is([data-settings-page-scroll],[data-slot=dialog-popup],[data-slot=sheet-popup]) :is([data-slot=input-group],[data-slot=input-control]:not([data-slot=input-group] *),[data-slot=textarea-control],[data-slot=number-field-group]):not([data-slot=sidebar] *,:has([aria-label="Search settings" i],[aria-label="Search threads" i])),[data-slot=checkbox],[data-slot=radio]{background:#d7d7d3!important}
+[data-slot=switch],[data-slot=checkbox],[data-slot=radio]{background:#7a7a75!important}
+[data-slot=switch-thumb]{background:repeating-linear-gradient(90deg,#0000 0 2px,#00000033 2px 3px) 50% 50%/9px 60% no-repeat,linear-gradient(#fbfbf9,#e2e2de)!important;box-shadow:inset 0 1px 0 #fff,0 1px 2px #00000080!important}
+:is([data-slot=checkbox],[data-slot=radio])[data-checked],[data-slot=switch][data-checked]{background:var(--k-o)!important;box-shadow:inset 0 1px 3px #00000059,0 1px 0 #ffffffb3!important}
+[data-slot$="-popup"]{background:linear-gradient(#f3f3f0,#e5e5e1)!important;box-shadow:inset 0 1px 0 #fff,0 1px 0 #00000040,0 16px 36px #00000059!important}
+:is([data-slot=menu-item],[data-slot=menu-checkbox-item],[data-slot=menu-radio-item],[data-slot=menu-sub-trigger],[data-slot=select-item],[data-slot=command-item],[data-slot=combobox-item],[data-slot=autocomplete-item])[data-highlighted]{background:#d3d3cf!important}
+.settings-slider::-webkit-slider-runnable-track{height:6px!important;border-radius:3px!important;background:linear-gradient(to right,var(--k-o) 0 var(--settings-slider-fill-position),#7a7a75 var(--settings-slider-fill-position) 100%)!important;box-shadow:var(--k-dn)!important}
+.settings-slider::-webkit-slider-thumb{width:12px!important;height:22px!important;margin-top:-8px!important;border:0!important;border-radius:2px!important;background:linear-gradient(#0000 0 10px,#0000004d 10px 12px,#0000 12px),linear-gradient(#fbfbf9,#e2e2de)!important;box-shadow:inset 0 1px 0 #fff,0 1px 3px #00000080!important;transform:none!important}
+.settings-slider:focus-visible::-webkit-slider-thumb{outline:2px solid var(--k-t);outline-offset:2px}
+::-webkit-scrollbar-track{background:#cdcdc9;box-shadow:inset 0 0 3px #00000059}
+::-webkit-scrollbar-thumb{background:#a3a39e;box-shadow:inset 0 1px 0 #ffffff80}
+[data-slot=scroll-area-thumb]{background:#a3a39e!important}
+[data-workspace-area=conversation]::before{rotate:180deg;filter:invert(1) brightness(.709) contrast(3.102)}
+
+/* Anything on the glass is drawn by the tube, not moulded: no bevels, shadows or blur, just lines */
+:is([data-workspace-area=conversation],[data-chat-composer-overlay]) :is([data-slot=button],[data-slot=toggle],[data-slot=select-trigger]):not(#_){box-shadow:none!important;background-image:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+:is([data-workspace-area=conversation],[data-chat-composer-overlay]) [data-slot=button]:not(.border-transparent):not(#_){background-image:linear-gradient(#1c1c1a14,#1c1c1a14)!important}
+:is([data-workspace-area=conversation],[data-chat-composer-overlay]) [data-slot=button].surface-glass:not(#_){background:#d4d4d0!important;border:0!important}
+[data-workspace-area=conversation] ::-webkit-scrollbar-track{background:0 0;box-shadow:none}
+[data-workspace-area=conversation] ::-webkit-scrollbar-thumb{background:var(--k-ln);border:0;box-shadow:none}
+[data-workspace-area=conversation] [data-slot=scroll-area-thumb]{background:var(--k-ln)!important}
