@@ -98,5 +98,8 @@ Two things to know before editing:
 
 ## Credits
 
-IBM Plex Mono is by IBM, licensed under the SIL Open Font License 1.1. The subset files in `src/fonts/` and the
-copies embedded in `theme/faceplate.json` are redistributed under that licence.
+The theme is released under the [MIT licence](LICENSE).
+
+The code font is IBM Plex Mono by IBM, licensed under the SIL Open Font License 1.1 ([`src/fonts/OFL.txt`](src/fonts/OFL.txt)).
+The theme ships a subset of it (Latin and Latin-1 only), in `src/fonts/` and embedded in `theme/faceplate.json`. Because
+the licence reserves the name "Plex" for unmodified copies, the subset is named "IX Mono" in the theme.
