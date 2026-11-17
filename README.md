@@ -23,8 +23,8 @@ The previews are renders of a stand-in page that uses the app's stylesheet, not 
 ## What it changes
 
 - **Shell:** sidebar and header are one housing with a fine satin grain and a soft sheen.
-- **Screen:** the chat sits behind a recessed bezel with four flat sloped faces. Dark mode is a dark tube with faint
-  scanlines; light mode is a paper-white screen with dark ink and no scanlines.
+- **Screen:** the chat sits behind a recessed bezel with four flat sloped faces. Dark mode is a dark glass
+  screen with pale text; light mode is a paper-white screen with dark ink.
 - **Controls:** buttons are keys (flush, raised on hover, sunk when pressed), text fields are sunk wells, switches
   are slide switches, sliders are faders, menus and dialogs are raised plates.
 - **Input:** a tinted field at the bottom of the screen; text scrolling under it fades out.
