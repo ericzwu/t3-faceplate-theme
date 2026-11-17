@@ -8,8 +8,6 @@ mode and follows the app's own light/dark setting.
 |---|---|
 | ![Light mode](preview/light.png) | ![Dark mode](preview/dark.png) |
 
-The previews are renders of a stand-in page that uses the app's stylesheet, not screenshots of the app.
-
 ## Install
 
 Paste this into a T3 Code thread:
