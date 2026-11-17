@@ -5,7 +5,7 @@ keys, faders and slide switches for controls. Light and dark modes follow the ap
 
 | Light | Dark |
 |---|---|
-| ![Light mode](preview/light.png) | ![Dark mode](preview/dark.png) |
+| ![Light mode](preview/light.webp) | ![Dark mode](preview/dark.webp) |
 
 ## Install
 
