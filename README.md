@@ -32,7 +32,6 @@ Tested on T3 Code 0.1.10.
 
 ## Limits
 
-- Desktop and web only. The mobile app doesn't use themes.
 - Native menus and window buttons can't be styled. Terminal text, the file tree and diff contents only take the
   theme's colours.
 - Parts of the theme depend on the app's current markup, so an update can break them. Anything that breaks falls
