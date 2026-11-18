@@ -61,7 +61,7 @@
 [data-slot=scroll-area-thumb]{background:#47473f!important;border-radius:4px!important}
 
 /* The tube: glass recessed behind a moulded bezel */
-[data-workspace-area=conversation]{background:radial-gradient(ellipse at 50% 40%,#101614,#070a09 95%)!important;padding:24px!important;text-shadow:0 0 7px color-mix(in srgb,currentColor 18%,transparent)}
+[data-workspace-area=conversation]{background:radial-gradient(ellipse at 50% 40%,#101614,#070a09 95%)!important;padding:24px!important}
 /* glass: rounded tube face with vignette and glare, set in a flat inner mask */
 [data-workspace-area=conversation]::after{content:"";position:absolute;inset:24px;z-index:40;pointer-events:none;border-radius:26px;clip-path:inset(-6px);
 background:radial-gradient(ellipse 120% 60% at 28% -12%,#ffffff12,#0000 55%);
@@ -146,3 +146,12 @@ box-shadow:inset 0 0 0 1px #000,inset 0 0 70px #000b,inset 0 0 8px #000,0 0 0 2p
 /* the scroller runs into the tube corners; round it so the scrollbar does not show past the curve */
 .messages-timeline-scroll{clip-path:inset(0 round 26px)}
 @media (prefers-reduced-motion:reduce){.chat-markdown[data-streaming]>:last-child::after{animation:none!important}}
+/* phosphor: a faint glow on prose only; code, tables and diffs stay sharp */
+.chat-markdown :is(p,li,h1,h2,h3,h4,blockquote){text-shadow:0 0 4px color-mix(in srgb,currentColor 12%,transparent)}
+.chat-markdown :is(code,pre,table){text-shadow:none}
+:root{--info-foreground:var(--k-t)!important}
+/* stop: the app paints it red; draw it as the same key as send */
+[data-chat-composer-overlay] .rounded-full.bg-destructive\/90{background:var(--message-action)!important;color:var(--message-action-foreground)!important;box-shadow:none!important}
+[data-chat-composer-overlay] .rounded-full.bg-destructive\/90:hover{background:var(--message-action-hover)!important}
+/* file links: the app leaves them blue; give them the link colour */
+.chat-markdown :is(.chat-markdown-file-link,.chat-markdown-file-link *){color:var(--k-t)!important}
